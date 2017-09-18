@@ -12,5 +12,6 @@ target 'Flash Chat' do
   pod 'SVProgressHUD'
   pod 'ChameleonFramework'
   pod 'Firebase/Core'
+  pod 'pop', git: 'https://github.com/facebook/pop.git'
 
 end

@@ -38,6 +38,7 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.11)
+  - pop (1.0.10)
   - SVProgressHUD (2.2.1)
 
 DEPENDENCIES:
@@ -46,7 +47,17 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - pop (from `https://github.com/facebook/pop.git`)
   - SVProgressHUD
+
+EXTERNAL SOURCES:
+  pop:
+    :git: https://github.com/facebook/pop.git
+
+CHECKOUT OPTIONS:
+  pop:
+    :commit: e645e895687a29f0093b92e1026656f50e8308be
+    :git: https://github.com/facebook/pop.git
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
@@ -58,8 +69,9 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
 
-PODFILE CHECKSUM: 4bd5a25138942adc22fd3a788618cfa385b71ef1
+PODFILE CHECKSUM: 816891a2e70da511ecc68bb13e4ecead47c10db6
 
 COCOAPODS: 1.3.1
