@@ -6,7 +6,7 @@
 
 
 import UIKit
-
+import Firebase
 
 class LogInViewController: UIViewController {
 
@@ -26,7 +26,14 @@ class LogInViewController: UIViewController {
    
     @IBAction func logInPressed(_ sender: AnyObject) {
 
-        
+        FIRAuth.auth()?.signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!, completion: { (user, error) in
+            if error != nil {
+                print(error ?? "Not an error")
+            } else {
+                print("Login successful!")
+                self.performSegue(withIdentifier: "goToChat", sender: self)
+            }
+        })
         //TODO: Log in the user
         
         
