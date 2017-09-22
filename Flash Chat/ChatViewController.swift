@@ -14,7 +14,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     // Declare instance variables here
-
+    var messageArray : [Message] = [Message]()
     
     // We've pre-linked the IBOutlets
     @IBOutlet var heightConstraint: NSLayoutConstraint!
@@ -44,6 +44,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         messageTableView.register(UINib(nibName: "MessageCell",  bundle: nil), forCellReuseIdentifier: "customMessageCell")
         
         configureTableView()
+        retriveMessages()
     }
 
     ///////////////////////////////////////////
@@ -131,7 +132,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         messagesDB.childByAutoId().setValue(messageDictionary) {
             (error, ref) in
             if error != nil {
-                print(error ?? "fgg")
+                print(error ?? "Not an error")
             } else {
                 print("Message saved succesfully")
             }
@@ -142,7 +143,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     //TODO: Create the retrieveMessages method here:
-    
+    func retriveMessages() {
+        let messageDB = FIRDatabase.database().reference().child("Messages")
+        messageDB.observe(.childAdded, with: {(snapshot) in
+            
+            let snapshotValue = snapshot.value as! Dictionary<String, String>
+            let text = snapshotValue["messageBody"]!
+            let sender = snapshotValue["Sender"]!
+
+            print(text)
+            print(sender)
+        })
+    }
     
 
     
