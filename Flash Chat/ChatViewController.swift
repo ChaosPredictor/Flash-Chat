@@ -31,11 +31,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         messageTableView.delegate = self
         messageTableView.dataSource = self
         
-        
         //TODO: Set yourself as the delegate of the text field here:
         messageTextfield.delegate = self
 
-        
         //TODO: Set the tapGesture here:
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         messageTableView.addGestureRecognizer(tapGesture)
@@ -52,14 +50,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     //MARK: - TableView DataSource Methods
     
     
-    
     //TODO: Declare cellForRowAtIndexPath here:
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell
         
-        let messageArray = ["First", "Second", "third"]
+        //let messageArray = messageArray.
         
-        cell.messageBody.text = messageArray[indexPath.row]
+        cell.messageBody.text = messageArray[indexPath.row].messageBody
     
         return cell
     }
@@ -67,7 +64,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //TODO: Declare numberOfRowsInSection here:
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return messageArray.count
     }
     
     
@@ -151,8 +148,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             let text = snapshotValue["messageBody"]!
             let sender = snapshotValue["Sender"]!
 
+            let message = Message(sender: sender, messageBody: text)
+            self.messageArray.append(message)
             print(text)
             print(sender)
+            
+            self.configureTableView()
+            self.messageTableView.reloadData()
         })
     }
     
